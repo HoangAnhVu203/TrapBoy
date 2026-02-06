@@ -406,9 +406,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3200159011218335761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170.625, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 54, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8446072373268341188
@@ -481,9 +481,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3906469878674021592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5245796110037056824
@@ -546,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5839701268471193326
 RectTransform:
   m_ObjectHideFlags: 0
@@ -837,9 +837,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4567545957679814311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.83, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 113.59, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1655578151509969061
@@ -1275,9 +1275,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3906469878674021592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 339.93335, y: -35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &854725031287917273
@@ -1354,9 +1354,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9183551017300359943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 147.5, y: -32.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 54, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3032003095364021355
@@ -1552,9 +1552,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4567545957679814311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170.625, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 54, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1929835478904406104
@@ -1628,9 +1628,9 @@ RectTransform:
   - {fileID: 1899771558385775932}
   m_Father: {fileID: 3906469878674021592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.46667, y: -35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 234.8, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4900194509111357030
@@ -1826,9 +1826,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9183551017300359943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.5, y: -32.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 110, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6875183385514372112
@@ -1905,9 +1905,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3200159011218335761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.83, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 113.59, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4200641372226332952
