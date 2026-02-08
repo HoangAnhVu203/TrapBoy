@@ -447,7 +447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.012878418, y: 0.00036621094}
+  m_AnchoredPosition: {x: -0.012939453, y: 0.00036621094}
   m_SizeDelta: {x: -0.008544922, y: -0.0017089844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4640703349476582542
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c977ddd4bc4b4aa1e1bbbe3056c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelController
-  stagePrefabs:
+  stages:
   - {fileID: 8538970513143191585}
   - {fileID: 3009431535593160251}
   - {fileID: 7421303957780784647}

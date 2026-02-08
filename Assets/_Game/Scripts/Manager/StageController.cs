@@ -12,29 +12,41 @@ public class StageController : MonoBehaviour
         public bool isWin;
     }
 
-    [Header("UI Refs")]
-    [SerializeField] private Button btnA;
-    [SerializeField] private Image imgA;
-    [SerializeField] private Button btnB;
-    [SerializeField] private Image imgB;
-
-    [Header("Stage Data (set per stage prefab)")]
+    [Header("Stage Data")]
     [SerializeField] private ChoiceData choiceA;
     [SerializeField] private ChoiceData choiceB;
 
     [Header("Intro")]
-    [SerializeField] private float introSeconds = 0.7f;          // intro đơn giản (delay)
-    [SerializeField] private Animator introAnimator;             // nếu có anim, kéo Animator vào
-    [SerializeField] private string introTrigger = "PlayIntro";  // trigger anim intro
+    [SerializeField] private float introSeconds = 0.7f;
+    [SerializeField] private Animator introAnimator;
+    [SerializeField] private string introTrigger = "PlayIntro";
 
     [Header("Options")]
     [SerializeField] private bool shuffleChoicesEachStage = true;
 
+    // runtime ui refs (lấy từ PanelGamePlay)
+    private Button btnA, btnB;
+    private Image imgA, imgB;
+
     private Action<bool> onResult;
     private bool locked;
+    private bool btnAIsWin, btnBIsWin;
 
-    private bool btnAIsWin;
-    private bool btnBIsWin;
+    // GameManager gọi trước khi PrepareGameplay
+    public void BindGameplayUI(PanelGamePlay panel)
+    {
+        if (panel == null)
+        {
+            Debug.LogError("[StageController] BindGameplayUI: panel is null.");
+            return;
+        }
+
+        btnA = panel.btnOption1;
+        imgA = panel.imgOption1;
+
+        btnB = panel.btnOption2;
+        imgB = panel.imgOption2;
+    }
 
     public void PrepareGameplay(Action<bool> onResultCallback)
     {
@@ -43,7 +55,7 @@ public class StageController : MonoBehaviour
 
         if (!btnA || !btnB || !imgA || !imgB)
         {
-            Debug.LogError("[StageController] Missing btn/img refs.");
+            Debug.LogError("[StageController] Missing btn/img refs. Did you call BindGameplayUI()?");
             return;
         }
         if (choiceA == null || choiceB == null)
@@ -66,20 +78,18 @@ public class StageController : MonoBehaviour
 
         btnA.onClick.RemoveAllListeners();
         btnB.onClick.RemoveAllListeners();
+
         btnA.onClick.AddListener(() => Choose(btnAIsWin));
         btnB.onClick.AddListener(() => Choose(btnBIsWin));
 
-        // Chưa cho bấm cho tới khi intro xong
         SetInteractable(false);
     }
 
     public IEnumerator PlayIntroCR()
     {
-        // nếu có anim intro thì play trigger
         if (introAnimator != null && !string.IsNullOrEmpty(introTrigger))
             introAnimator.SetTrigger(introTrigger);
 
-        // intro kiểu delay (bạn có thể thay bằng chờ anim event)
         float t = Mathf.Max(0f, introSeconds);
         if (t > 0f) yield return new WaitForSecondsRealtime(t);
     }

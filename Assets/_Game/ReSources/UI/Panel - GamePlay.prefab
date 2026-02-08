@@ -622,10 +622,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelGamePlay
   isDestroyOnClose: 0
-  btnA: {fileID: 1561924679517568753}
-  imgA: {fileID: 3362833597400355293}
-  btnB: {fileID: 3645770622406151050}
-  imgB: {fileID: 3470658895800262838}
+  btnOption1: {fileID: 1561924679517568753}
+  imgOption1: {fileID: 3362833597400355293}
+  btnOption2: {fileID: 3645770622406151050}
+  imgOption2: {fileID: 3470658895800262838}
 --- !u!1 &3926583450236705711
 GameObject:
   m_ObjectHideFlags: 0

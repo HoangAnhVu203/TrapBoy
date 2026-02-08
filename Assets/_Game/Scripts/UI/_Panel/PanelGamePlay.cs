@@ -3,7 +3,11 @@ using UnityEngine.UI;
 
 public class PanelGamePlay : UICanvas
 {
-    public RectTransform stageRoot;
+    public Button btnOption1;
+    public Image imgOption1;
+
+    public Button btnOption2;
+    public Image imgOption2;
 
     public void OpenSettingBTN()
     {
