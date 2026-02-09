@@ -1,68 +1,56 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StageController : MonoBehaviour
 {
     [Serializable]
     public class ChoiceData
     {
-        public Sprite sprite;
+        public Sprite optionSprite;
         public bool isWin;
     }
 
-    [Header("Stage Data")]
+    [Header("Stage Choices")]
     [SerializeField] private ChoiceData choiceA;
     [SerializeField] private ChoiceData choiceB;
 
+    [Header("Button BG Sprites (Result)")]
+    [SerializeField] private Sprite winButtonBg;
+    [SerializeField] private Sprite failButtonBg;
+
     [Header("Intro")]
-    [SerializeField] private float introSeconds = 0.7f;
+    [SerializeField] private float introSeconds = 1.0f;
     [SerializeField] private Animator introAnimator;
     [SerializeField] private string introTrigger = "PlayIntro";
 
     [Header("Options")]
     [SerializeField] private bool shuffleChoicesEachStage = true;
 
-    // runtime ui refs (lấy từ PanelGamePlay)
-    private Button btnA, btnB;
-    private Image imgA, imgB;
-
+    private PanelGamePlay panel;
     private Action<bool> onResult;
     private bool locked;
-    private bool btnAIsWin, btnBIsWin;
+    private bool mapped0IsWin, mapped1IsWin;
 
-    // GameManager gọi trước khi PrepareGameplay
-    public void BindGameplayUI(PanelGamePlay panel)
-    {
-        if (panel == null)
-        {
-            Debug.LogError("[StageController] BindGameplayUI: panel is null.");
-            return;
-        }
-
-        btnA = panel.btnOption1;
-        imgA = panel.imgOption1;
-
-        btnB = panel.btnOption2;
-        imgB = panel.imgOption2;
-    }
+    public void BindGameplayUI(PanelGamePlay p) => panel = p;
 
     public void PrepareGameplay(Action<bool> onResultCallback)
     {
         onResult = onResultCallback;
         locked = false;
 
-        if (!btnA || !btnB || !imgA || !imgB)
+        if (panel == null)
         {
-            Debug.LogError("[StageController] Missing btn/img refs. Did you call BindGameplayUI()?");
+            Debug.LogError("[StageController] panel is null. Call BindGameplayUI first.");
             return;
         }
         if (choiceA == null || choiceB == null)
         {
-            Debug.LogError("[StageController] Missing choiceA/choiceB.");
+            Debug.LogError("[StageController] choiceA/choiceB missing.");
             return;
         }
+
+        panel.ResetOptionsUI();
 
         var c0 = choiceA;
         var c1 = choiceB;
@@ -70,19 +58,22 @@ public class StageController : MonoBehaviour
         if (shuffleChoicesEachStage && UnityEngine.Random.value > 0.5f)
             (c0, c1) = (c1, c0);
 
-        imgA.sprite = c0.sprite;
-        imgB.sprite = c1.sprite;
+        // ✅ set ảnh lựa chọn stage (giữ nguyên trong suốt quá trình)
+        if (panel.optionImg1) panel.optionImg1.sprite = c0.optionSprite;
+        if (panel.optionImg2) panel.optionImg2.sprite = c1.optionSprite;
 
-        btnAIsWin = c0.isWin;
-        btnBIsWin = c1.isWin;
+        mapped0IsWin = c0.isWin;
+        mapped1IsWin = c1.isWin;
 
-        btnA.onClick.RemoveAllListeners();
-        btnB.onClick.RemoveAllListeners();
+        // bind click
+        panel.BindChoiceButtons(
+            onClick1: () => Choose(0, mapped0IsWin),
+            onClick2: () => Choose(1, mapped1IsWin)
+        );
 
-        btnA.onClick.AddListener(() => Choose(btnAIsWin));
-        btnB.onClick.AddListener(() => Choose(btnBIsWin));
-
-        SetInteractable(false);
+        // khóa input trong intro
+        if (panel.btnOption1) panel.btnOption1.interactable = false;
+        if (panel.btnOption2) panel.btnOption2.interactable = false;
     }
 
     public IEnumerator PlayIntroCR()
@@ -96,21 +87,22 @@ public class StageController : MonoBehaviour
 
     public void StartGameplayInput()
     {
-        SetInteractable(true);
         locked = false;
+        if (panel?.btnOption1) panel.btnOption1.interactable = true;
+        if (panel?.btnOption2) panel.btnOption2.interactable = true;
     }
 
-    private void Choose(bool isWin)
+    private void Choose(int chosenIndex, bool isWin)
     {
         if (locked) return;
         locked = true;
-        SetInteractable(false);
-        onResult?.Invoke(isWin);
-    }
 
-    private void SetInteractable(bool on)
-    {
-        if (btnA) btnA.interactable = on;
-        if (btnB) btnB.interactable = on;
+        panel.PlayChoiceResultBG(
+            chosenIndex: chosenIndex,
+            isWin: isWin,
+            winBgSprite: winButtonBg,
+            failBgSprite: failButtonBg,
+            onDone: () => onResult?.Invoke(isWin)
+        );
     }
 }

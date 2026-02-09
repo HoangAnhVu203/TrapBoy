@@ -88,16 +88,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a86c81b2e1646ffbbf56b66248c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageController
-  btnA: {fileID: 0}
-  imgA: {fileID: 0}
-  btnB: {fileID: 0}
-  imgB: {fileID: 0}
   choiceA:
-    sprite: {fileID: 0}
+    optionSprite: {fileID: 0}
     isWin: 0
   choiceB:
-    sprite: {fileID: 0}
+    optionSprite: {fileID: 0}
     isWin: 0
+  winButtonBg: {fileID: 0}
+  failButtonBg: {fileID: 0}
   introSeconds: 0.7
   introAnimator: {fileID: 0}
   introTrigger: PlayIntro
@@ -190,16 +188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a86c81b2e1646ffbbf56b66248c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageController
-  btnA: {fileID: 0}
-  imgA: {fileID: 0}
-  btnB: {fileID: 0}
-  imgB: {fileID: 0}
   choiceA:
-    sprite: {fileID: -8408786617036149182, guid: 0279dbd2f4ca64b919c2e2dae9e2c3a6, type: 3}
+    optionSprite: {fileID: -8408786617036149182, guid: 0279dbd2f4ca64b919c2e2dae9e2c3a6, type: 3}
     isWin: 1
   choiceB:
-    sprite: {fileID: 6132845392075688581, guid: f1064e4f70f2d4d64a2184a8f8cee9f3, type: 3}
+    optionSprite: {fileID: 6132845392075688581, guid: f1064e4f70f2d4d64a2184a8f8cee9f3, type: 3}
     isWin: 0
+  winButtonBg: {fileID: -7223910981919970820, guid: 88183590ee7774bec87f5b653b98aee9, type: 3}
+  failButtonBg: {fileID: 7450336072517025634, guid: b5ccb301de67e44b4a76fbfa62bb75db, type: 3}
   introSeconds: 0.7
   introAnimator: {fileID: 0}
   introTrigger: PlayIntro
@@ -292,16 +288,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a86c81b2e1646ffbbf56b66248c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageController
-  btnA: {fileID: 0}
-  imgA: {fileID: 0}
-  btnB: {fileID: 0}
-  imgB: {fileID: 0}
   choiceA:
-    sprite: {fileID: 0}
-    isWin: 0
+    optionSprite: {fileID: 0}
+    isWin: 1
   choiceB:
-    sprite: {fileID: 0}
+    optionSprite: {fileID: 0}
     isWin: 0
+  winButtonBg: {fileID: 0}
+  failButtonBg: {fileID: 0}
   introSeconds: 0.7
   introAnimator: {fileID: 0}
   introTrigger: PlayIntro
@@ -394,16 +388,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a86c81b2e1646ffbbf56b66248c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageController
-  btnA: {fileID: 0}
-  imgA: {fileID: 0}
-  btnB: {fileID: 0}
-  imgB: {fileID: 0}
   choiceA:
-    sprite: {fileID: 0}
+    optionSprite: {fileID: 0}
     isWin: 0
   choiceB:
-    sprite: {fileID: 0}
+    optionSprite: {fileID: 0}
     isWin: 0
+  winButtonBg: {fileID: 0}
+  failButtonBg: {fileID: 0}
   introSeconds: 0.7
   introAnimator: {fileID: 0}
   introTrigger: PlayIntro

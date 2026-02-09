@@ -23,21 +23,17 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        StartCoroutine(BootCR());
     }
 
     private IEnumerator BootCR()
     {
         SetState(GameFlowState.Loading);
 
-        // Loading on top
-        UIManager.Instance.OpenUI<PanelLoading>();
         UIManager.Instance.CloseUIDirectly<PanelWin>();
         UIManager.Instance.CloseUIDirectly<PanelFail>();
         UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
 
-        yield return null;
-
-        // Load current level (LevelManager chỉ spawn prefab, không tự start)
         level = LevelManager.Instance.LoadCurrentLevel();
         if (level == null)
         {
@@ -45,16 +41,15 @@ public class GameManager : Singleton<GameManager>
             yield break;
         }
 
-        // Đảm bảo gameplay panel đã có instance để lát nữa Open nhanh (optional)
         UIManager.Instance.GetUI<PanelGamePlay>();
 
-        // Tắt loading
-        UIManager.Instance.CloseUIDirectly<PanelLoading>();
-
-        // Start stage 0
         stageIndex = 0;
-        PlayStage(stageIndex);
+        UpdateHUD();
+
+        PlayStageWithLoading(stageIndex, 5f);
     }
+
+
 
     private void PlayStage(int index)
     {
@@ -66,35 +61,37 @@ public class GameManager : Singleton<GameManager>
     {
         if (level == null) yield break;
 
+        stageIndex = index;
+        UpdateHUD();
+
         SetState(GameFlowState.StageIntro);
 
-        // Đóng gameplay trước khi intro stage
         UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
         UIManager.Instance.CloseUIDirectly<PanelWin>();
         UIManager.Instance.CloseUIDirectly<PanelFail>();
 
-        // Bật stage con trong level prefab
+        // Loading khi qua stage: 2s
+        yield return StartCoroutine(ShowLoadingCR(1.0f));
+
         var stage = level.ActivateStage(index);
         if (stage == null) yield break;
 
         var gameplayPanel = UIManager.Instance.GetUI<PanelGamePlay>();
         stage.BindGameplayUI(gameplayPanel);
 
-        // bind choices nhưng chưa cho bấm
         stage.PrepareGameplay(OnStageResult);
 
-        // chạy intro stage
         yield return stage.PlayIntroCR();
 
-        // mở gameplay và cho input
         SetState(GameFlowState.Gameplay);
+
         UIManager.Instance.OpenUI<PanelGamePlay>();
         stage.StartGameplayInput();
     }
 
+
     private void OnStageResult(bool isWin)
     {
-        // chỉ nhận kết quả khi đang gameplay
         if (state != GameFlowState.Gameplay) return;
 
         if (!isWin)
@@ -105,9 +102,12 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        // win stage => tăng stage
         stageIndex++;
 
-        // hết stage -> win level
+        // update progress theo stage vừa hoàn thành
+        UpdateHUD();
+
         if (level == null || stageIndex >= level.StageCount)
         {
             SetState(GameFlowState.Win);
@@ -116,8 +116,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        // stage tiếp theo
-        PlayStage(stageIndex);
+        PlayStageWithLoading(stageIndex, 1.0f);
     }
 
     // ===== UI buttons =====
@@ -127,12 +126,12 @@ public class GameManager : Singleton<GameManager>
         if (state != GameFlowState.Fail) return;
 
         UIManager.Instance.CloseUIDirectly<PanelFail>();
-        PlayStage(stageIndex);
+        PlayStageWithLoading(stageIndex, 1.0f);
     }
+
 
     public void ReplayLevel()
     {
-        // cho phép gọi từ Win hoặc Fail đều được
         UIManager.Instance.CloseUIDirectly<PanelFail>();
         UIManager.Instance.CloseUIDirectly<PanelWin>();
         UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
@@ -142,13 +141,16 @@ public class GameManager : Singleton<GameManager>
         level = LevelManager.Instance.ReplayLevel();
         if (level == null)
         {
-            Debug.LogError("[GameManager] ReplayLevel failed: level is null.");
+            Debug.LogError("[GameManager] ReplayLevel failed.");
             return;
         }
 
         stageIndex = 0;
-        PlayStage(stageIndex);
+        UpdateHUD();
+
+        PlayStageWithLoading(stageIndex, 1.0f);
     }
+
 
     public void NextLevel()
     {
@@ -162,12 +164,25 @@ public class GameManager : Singleton<GameManager>
         level = LevelManager.Instance.NextLevel();
         if (level == null)
         {
-            Debug.LogError("[GameManager] NextLevel failed: level is null.");
+            Debug.LogError("[GameManager] NextLevel failed.");
             return;
         }
 
         stageIndex = 0;
-        PlayStage(stageIndex);
+        UpdateHUD();
+
+        PlayStageWithLoading(stageIndex, 1.0f);
+    }
+
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 
     // ===== utils =====
@@ -175,7 +190,6 @@ public class GameManager : Singleton<GameManager>
     private void SetState(GameFlowState newState)
     {
         state = newState;
-        // Debug.Log($"[GameManager] State = {state}");
     }
 
     private void StopStageCoroutine()
@@ -186,4 +200,56 @@ public class GameManager : Singleton<GameManager>
             stageCR = null;
         }
     }
+
+    private void UpdateHUD()
+    {
+        var panel = UIManager.Instance.GetUI<PanelGamePlay>();
+        if (panel == null || level == null) return;
+
+        int totalLevels = LevelManager.Instance.TotalLevels;
+        int cur = LevelManager.Instance.CurrentLevelIndex + 1;
+
+        int next = cur;
+        if (totalLevels > 0)
+        {
+            int nextIndex = (LevelManager.Instance.CurrentLevelIndex + 1) % totalLevels;
+            next = nextIndex + 1;
+        }
+
+        panel.SetLevelInfo(cur, next);
+        panel.SetStageProgress(stageIndex, level.StageCount);
+    }
+
+    private IEnumerator ShowLoadingCR(float seconds)
+    {
+        var loading = UIManager.Instance.OpenUI<PanelLoading>();
+        loading.Play(seconds);
+
+        yield return new WaitForSecondsRealtime(seconds);
+
+        UIManager.Instance.CloseUIDirectly<PanelLoading>();
+    }
+
+
+
+    private void PlayStageWithLoading(int index, float loadingSeconds)
+    {
+        StopStageCoroutine();
+        stageCR = StartCoroutine(PlayStageWithLoadingCR(index, loadingSeconds));
+    }
+
+    private IEnumerator PlayStageWithLoadingCR(int index, float loadingSeconds)
+    {
+        // đóng UI trước
+        UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
+        UIManager.Instance.CloseUIDirectly<PanelWin>();
+        UIManager.Instance.CloseUIDirectly<PanelFail>();
+
+        // bật loading
+        yield return StartCoroutine(ShowLoadingCR(loadingSeconds));
+
+        // sau loading mới chạy stage thật
+        yield return StartCoroutine(StageFlowCR(index));
+    }
+
 }

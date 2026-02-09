@@ -4,8 +4,9 @@ public class PanelWin : UICanvas
 {
     public void NextLevelBTN()
     {
-        LevelManager.Instance.NextLevel();
+        GameManager.Instance.NextLevel();
     }
+
 
     public void ClaimX2MoneyBTN()
     {

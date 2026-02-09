@@ -18,6 +18,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public int CurrentLevelIndex => currentLevelIndex;
     public LevelController CurrentLevel => currentLevel;
+    public int TotalLevels => levelPrefabs != null ? levelPrefabs.Count : 0;
 
     void Awake()
     {
@@ -84,6 +85,15 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(currentLevelGO);
             currentLevelGO = null;
             currentLevel = null;
+        }
+    }
+
+    public int NextLevelIndex
+    {
+        get
+        {
+            if (TotalLevels == 0) return 0;
+            return (currentLevelIndex + 1) % TotalLevels;
         }
     }
 }
