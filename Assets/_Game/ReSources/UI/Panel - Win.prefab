@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1492800856971244447}
   - component: {fileID: 2847408563084108863}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: ClaimX2btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5666004259284912607, guid: d8d1d02b24be94d36bf5dce6b9666c23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7945ddbd6d5df4759aa741d8bb6d710b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -618,6 +618,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelWin
   isDestroyOnClose: 0
+  claimX2Button: {fileID: 889410058797991686}
+  pulseScale: 1.15
+  pulseTime: 0.35
 --- !u!1 &5488512922382399215
 GameObject:
   m_ObjectHideFlags: 0

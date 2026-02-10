@@ -49,8 +49,6 @@ public class GameManager : Singleton<GameManager>
         PlayStageWithLoading(stageIndex, 5f);
     }
 
-
-
     private void PlayStage(int index)
     {
         StopStageCoroutine();
@@ -66,29 +64,31 @@ public class GameManager : Singleton<GameManager>
 
         SetState(GameFlowState.StageIntro);
 
-        UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
         UIManager.Instance.CloseUIDirectly<PanelWin>();
         UIManager.Instance.CloseUIDirectly<PanelFail>();
-
-        // Loading khi qua stage: 2s
-        yield return StartCoroutine(ShowLoadingCR(1.0f));
+        UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
 
         var stage = level.ActivateStage(index);
         if (stage == null) yield break;
 
         var gameplayPanel = UIManager.Instance.GetUI<PanelGamePlay>();
-        stage.BindGameplayUI(gameplayPanel);
+        if (gameplayPanel == null)
+        {
+            Debug.LogError("[GameManager] Missing PanelGamePlay prefab/instance.");
+            yield break;
+        }
 
+        stage.BindGameplayUI(gameplayPanel);
         stage.PrepareGameplay(OnStageResult);
 
         yield return stage.PlayIntroCR();
 
         SetState(GameFlowState.Gameplay);
-
         UIManager.Instance.OpenUI<PanelGamePlay>();
-        stage.StartGameplayInput();
-    }
 
+        stage.StartGameplayInput();
+
+    }
 
     private void OnStageResult(bool isWin)
     {
@@ -240,15 +240,12 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator PlayStageWithLoadingCR(int index, float loadingSeconds)
     {
-        // đóng UI trước
         UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
         UIManager.Instance.CloseUIDirectly<PanelWin>();
         UIManager.Instance.CloseUIDirectly<PanelFail>();
 
-        // bật loading
         yield return StartCoroutine(ShowLoadingCR(loadingSeconds));
 
-        // sau loading mới chạy stage thật
         yield return StartCoroutine(StageFlowCR(index));
     }
 

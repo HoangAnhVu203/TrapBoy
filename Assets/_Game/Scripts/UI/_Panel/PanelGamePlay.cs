@@ -19,6 +19,10 @@ public class PanelGamePlay : UICanvas
     public Image iconCorrect2;
     public Image iconWrong2;
 
+    [Header("Price Tag (child obj)")]
+    [SerializeField] private GameObject priceTag1; // object con (hoặc bất kỳ object trong subtree) có tag "price" của option 1
+    [SerializeField] private GameObject priceTag2; // object con có tag "price" của option 2
+
     [Header("Center Target")]
     public RectTransform centerTarget;
 
@@ -32,10 +36,13 @@ public class PanelGamePlay : UICanvas
     public float chosenScale = 1.15f;
 
     [Header("Anim - Pop")]
-    private float appearTime = 0.18f;     // 0->1
-    private float disappearTime = 0.15f;  // 1->0
-    private float clickPunchTime = 0.08f; // down + up
-    private float clickPunchScale = 0.92f;
+    [SerializeField] private float appearTime = 0.18f;       // 0->1
+    [SerializeField] private float disappearTime = 0.15f;    // 1->0
+    [SerializeField] private float clickPunchTime = 0.08f;   // down + up
+    [SerializeField] private float clickPunchScale = 0.92f;
+
+    [Header("Timing")]
+    [SerializeField] private float waitBeforeRevealResult = 1.0f; // đợi sau khi vào giữa rồi mới hiện đúng/sai + đổi bg
 
     RectTransform rt1, rt2;
     Vector2 pos1, pos2;
@@ -61,8 +68,13 @@ public class PanelGamePlay : UICanvas
         if (buttonBg1) bg1BaseSprite = buttonBg1.sprite;
         if (buttonBg2) bg2BaseSprite = buttonBg2.sprite;
 
+        // Auto-find price tag trong subtree của từng option nếu chưa gán trong Inspector
+        if (priceTag1 == null && btnOption1) priceTag1 = FindTagInChildren(btnOption1.transform, "price");
+        if (priceTag2 == null && btnOption2) priceTag2 = FindTagInChildren(btnOption2.transform, "price");
+
         ResetOptionsUI();
     }
+
     void OnEnable()
     {
         if (pendingAppearAnim)
@@ -71,7 +83,6 @@ public class PanelGamePlay : UICanvas
             PlayAppearAnim();
         }
     }
-
 
     // ===================== RESET =====================
 
@@ -88,6 +99,14 @@ public class PanelGamePlay : UICanvas
         if (rt1) rt1.anchoredPosition = pos1;
         if (rt2) rt2.anchoredPosition = pos2;
 
+        // reset scale
+        if (rt1) rt1.localScale = scale1;
+        if (rt2) rt2.localScale = scale2;
+
+        // bật lại price tag
+        if (priceTag1) priceTag1.SetActive(true);
+        if (priceTag2) priceTag2.SetActive(true);
+
         // tắt icon
         if (iconCorrect1) iconCorrect1.gameObject.SetActive(false);
         if (iconWrong1) iconWrong1.gameObject.SetActive(false);
@@ -101,9 +120,6 @@ public class PanelGamePlay : UICanvas
         // panel đang tắt -> đừng set scale=0 (kẻo mất nút)
         if (!isActiveAndEnabled)
         {
-            if (rt1) rt1.localScale = scale1;
-            if (rt2) rt2.localScale = scale2;
-
             pendingAppearAnim = true;
             return;
         }
@@ -111,7 +127,6 @@ public class PanelGamePlay : UICanvas
         // panel đang bật -> chạy pop-in
         PlayAppearAnim();
     }
-
 
     // ===================== BIND =====================
 
@@ -153,26 +168,28 @@ public class PanelGamePlay : UICanvas
         RectTransform chosenRT = chosenBtn ? chosenBtn.GetComponent<RectTransform>() : null;
         RectTransform otherRT  = otherBtn ? otherBtn.GetComponent<RectTransform>() : null;
 
+        GameObject chosenPrice = (idx == 0) ? priceTag1 : priceTag2;
+
         if (!chosenBtn || chosenBg == null || centerTarget == null || chosenRT == null)
         {
             Debug.LogError("[PanelGamePlay] Missing refs (chosenBtn/chosenBg/centerTarget).");
             yield break;
         }
 
-        // KHÔNG set interactable=false để tránh bị ColorTint/Disabled mờ.
-        // Khóa bằng locked là đủ.
-
         // 1) click punch: scale nhỏ rồi về lại
         yield return ClickPunch(chosenRT, idx == 0 ? scale1 : scale2);
 
-        // 2) ẩn nút còn lại bằng scale về 0 rồi SetActive(false)
+        // 2) ẩn price tag ngay sau khi click
+        if (chosenPrice) chosenPrice.SetActive(false);
+
+        // 3) ẩn nút còn lại bằng scale về 0 rồi SetActive(false)
         if (otherBtn && otherRT)
         {
             yield return ScaleTo(otherRT, otherRT.localScale, Vector3.zero, disappearTime, unscaled: true);
             otherBtn.gameObject.SetActive(false);
         }
 
-        // 3) move chosen to center
+        // 4) move chosen to center
         Vector2 start = chosenRT.anchoredPosition;
         Vector2 end = WorldToAnchored(chosenRT, centerTarget.position);
 
@@ -187,11 +204,12 @@ public class PanelGamePlay : UICanvas
 
         chosenRT.localScale = Vector3.one * chosenScale;
 
-        // 4) đổi BG win/fail
+        // 5) đợi 1s rồi mới đổi bg + hiện đúng/sai
+        yield return new WaitForSecondsRealtime(waitBeforeRevealResult);
+
         if (isWin && winBg) chosenBg.sprite = winBg;
         if (!isWin && failBg) chosenBg.sprite = failBg;
 
-        // 5) bật tick/x
         if (correctIco) correctIco.gameObject.SetActive(isWin);
         if (wrongIco)   wrongIco.gameObject.SetActive(!isWin);
 
@@ -228,7 +246,7 @@ public class PanelGamePlay : UICanvas
         rt.localScale = to;
     }
 
-    // Ease "pop" nhẹ 
+    // Ease "pop" nhẹ
     float EaseOutBack(float x)
     {
         const float c1 = 1.70158f;
@@ -245,6 +263,36 @@ public class PanelGamePlay : UICanvas
             null,
             out Vector2 localPoint);
         return localPoint;
+    }
+
+    GameObject FindTagInChildren(Transform root, string tag)
+    {
+        if (!root) return null;
+
+        var all = root.GetComponentsInChildren<Transform>(true);
+        for (int i = 0; i < all.Length; i++)
+        {
+            if (all[i] != null && all[i].CompareTag(tag))
+                return all[i].gameObject;
+        }
+        return null;
+    }
+
+    // ===================== APPEAR =====================
+
+    private void PlayAppearAnim()
+    {
+        if (rt1)
+        {
+            rt1.localScale = Vector3.zero;
+            StartCoroutine(ScaleTo(rt1, Vector3.zero, scale1, appearTime, unscaled: true));
+        }
+
+        if (rt2)
+        {
+            rt2.localScale = Vector3.zero;
+            StartCoroutine(ScaleTo(rt2, Vector3.zero, scale2, appearTime, unscaled: true));
+        }
     }
 
     // ===================== HUD =====================
@@ -265,22 +313,8 @@ public class PanelGamePlay : UICanvas
             return;
         }
 
-        float amount = (stageIndex + 1) / (float)stageCount;
+        float amount = stageIndex / (float)stageCount;
         progressFill.fillAmount = Mathf.Clamp01(amount);
-    }
-    private void PlayAppearAnim()
-    {
-        if (rt1)
-        {
-            rt1.localScale = Vector3.zero;
-            StartCoroutine(ScaleTo(rt1, Vector3.zero, scale1, appearTime, unscaled: true));
-        }
-
-        if (rt2)
-        {
-            rt2.localScale = Vector3.zero;
-            StartCoroutine(ScaleTo(rt2, Vector3.zero, scale2, appearTime, unscaled: true));
-        }
     }
 
     public void OpenSettingBTN()

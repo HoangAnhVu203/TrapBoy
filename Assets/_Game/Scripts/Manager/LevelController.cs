@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
 
     void Awake()
     {
-        // đảm bảo lúc mới load level: tắt hết stage
+        // load level: tắt hết stage
         SetAllStagesActive(false);
         currentIndex = -1;
     }
@@ -48,7 +48,7 @@ public class LevelController : MonoBehaviour
         }
 
         stage.gameObject.SetActive(true);
-        stage.transform.SetAsLastSibling(); // lên trên nếu cần
+        stage.transform.SetAsLastSibling();
 
         return stage;
     }
