@@ -6,6 +6,9 @@ public class LevelController : MonoBehaviour
     [Header("Stages in this Level (drag children here in order)")]
     [SerializeField] private List<StageController> stages = new();
 
+    [Header("Auto")]
+    [SerializeField] private bool autoResetToFirstStageOnEnable = false; 
+
     private int currentIndex = -1;
 
     public int StageCount => stages != null ? stages.Count : 0;
@@ -13,12 +16,16 @@ public class LevelController : MonoBehaviour
 
     void Awake()
     {
-        // load level: tắt hết stage
         SetAllStagesActive(false);
         currentIndex = -1;
     }
 
-    /// Bật stage theo index và trả StageController để GameManager chạy Intro/GamePlay
+    void OnEnable()
+    {
+        if (autoResetToFirstStageOnEnable)
+            ResetToStage1();
+    }
+
     public StageController ActivateStage(int index)
     {
         if (stages == null || stages.Count == 0)
@@ -56,6 +63,12 @@ public class LevelController : MonoBehaviour
     public StageController ActivateFirstStage()
     {
         return ActivateStage(0);
+    }
+
+    public StageController ResetToStage1()
+    {
+        DeactivateAllStages();
+        return ActivateFirstStage();
     }
 
     public void DeactivateAllStages()

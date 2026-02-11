@@ -845,6 +845,7 @@ MonoBehaviour:
   - {fileID: 7943325065616642378, guid: df184d71de0724f219856633be562150, type: 3}
   levelRoot: {fileID: 1597690131}
   startLevelIndex: 0
+  useSavedLevelOnBoot: 1
 --- !u!1 &1467539656
 GameObject:
   m_ObjectHideFlags: 0

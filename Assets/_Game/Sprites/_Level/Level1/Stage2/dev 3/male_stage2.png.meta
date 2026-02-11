@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 954cf95ce049b431797045d71775c921
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2198280637053510067
+    second: male_stage2_0
+  - first:
+      213: 7965942928723078075
+    second: male_stage2_1
+  - first:
+      213: -593323394059176225
+    second: male_stage2_2
+  - first:
+      213: -6452729921294160717
+    second: male_stage2_3
+  - first:
+      213: -7977865036089423693
+    second: male_stage2_4
+  - first:
+      213: -6555148676278126282
+    second: male_stage2_5
+  - first:
+      213: 1807300306001125162
+    second: male_stage2_6
+  - first:
+      213: -3146804073652647374
+    second: male_stage2_7
+  - first:
+      213: -3247110324558318345
+    second: male_stage2_8
+  - first:
+      213: -2981035923550275701
+    second: male_stage2_9
+  - first:
+      213: 5015572984456046125
+    second: male_stage2_10
+  - first:
+      213: 1200405222857948188
+    second: male_stage2_11
+  - first:
+      213: 6814602559077555501
+    second: male_stage2_12
+  - first:
+      213: 8851444392086746662
+    second: male_stage2_13
+  - first:
+      213: 6726352612480424390
+    second: male_stage2_14
+  - first:
+      213: 4206870021002361657
+    second: male_stage2_15
+  - first:
+      213: -1020628586474104466
+    second: male_stage2_16
+  - first:
+      213: -1186149238139410319
+    second: male_stage2_17
+  - first:
+      213: 5673514464876686751
+    second: male_stage2_18
+  - first:
+      213: -1998989376854687304
+    second: male_stage2_19
+  - first:
+      213: -8370309538202037440
+    second: male_stage2_20
+  - first:
+      213: 9186777788575827422
+    second: male_stage2_21
+  - first:
+      213: 4438617232903114108
+    second: male_stage2_22
+  - first:
+      213: -7119083351152907869
+    second: male_stage2_23
+  - first:
+      213: -4178504247289666283
+    second: male_stage2_24
+  - first:
+      213: -8857928439740139161
+    second: male_stage2_25
+  - first:
+      213: -1585512847426724320
+    second: male_stage2_26
+  - first:
+      213: -1083122562973838201
+    second: male_stage2_27
+  - first:
+      213: -5246354084409543195
+    second: male_stage2_28
+  - first:
+      213: 4562817542249626258
+    second: male_stage2_29
+  - first:
+      213: -4159256231293424604
+    second: male_stage2_30
+  - first:
+      213: 1273292145276325632
+    second: male_stage2_31
+  - first:
+      213: -3445055647044093221
+    second: male_stage2_32
+  - first:
+      213: 8355781439483147548
+    second: male_stage2_33
+  - first:
+      213: 882777923549949121
+    second: male_stage2_34
+  - first:
+      213: 2485090080538746352
+    second: male_stage2_35
+  - first:
+      213: -4114188495336986280
+    second: male_stage2_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: male_stage2_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1279
+        width: 55
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b1a138a79cd18e10800000000000000
+      internalID: 2198280637053510067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1186
+        width: 225
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbbe29763e6bc8e60800000000000000
+      internalID: 7965942928723078075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1279
+        width: 48
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd67c24448714c7f0800000000000000
+      internalID: -593323394059176225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 1186
+        width: 180
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bc2ab9135c4376a0800000000000000
+      internalID: -6452729921294160717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_4
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 1186
+        width: 153
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b881e9a40ee84190800000000000000
+      internalID: -7977865036089423693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_5
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1186
+        width: 160
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639f194720f6705a0800000000000000
+      internalID: -6555148676278126282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_6
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 1186
+        width: 134
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2fd6a58d02d41910800000000000000
+      internalID: 1807300306001125162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_7
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 1230
+        width: 64
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23a8e241e5e4454d0800000000000000
+      internalID: -3146804073652647374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_8
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 1274
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f4b23e1d52ffe2d0800000000000000
+      internalID: -3247110324558318345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_9
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 1273
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b877b1a2f9b31a6d0800000000000000
+      internalID: -2981035923550275701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_10
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 1104
+        width: 226
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d266c834e05ea9540800000000000000
+      internalID: 5015572984456046125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_11
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 1092
+        width: 150
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1cb8fea032b8a010800000000000000
+      internalID: 1200405222857948188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_12
+      rect:
+        serializedVersion: 2
+        x: 1646
+        y: 1223
+        width: 208
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2d19431ce4529e50800000000000000
+      internalID: 6814602559077555501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_13
+      rect:
+        serializedVersion: 2
+        x: 1854
+        y: 1223
+        width: 58
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626347317c5a6da70800000000000000
+      internalID: 8851444392086746662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_14
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 1186
+        width: 225
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c99ae4301ec85d50800000000000000
+      internalID: 6726352612480424390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_15
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 1231
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93bf512cefdc16a30800000000000000
+      internalID: 4206870021002361657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_16
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 1230
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e691a9745bff5d1f0800000000000000
+      internalID: -1020628586474104466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 566
+        width: 1055
+        height: 620
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178a91a6d83f98fe0800000000000000
+      internalID: -1186149238139410319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_18
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1104
+        width: 214
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9de303a85f5cbe40800000000000000
+      internalID: 5673514464876686751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_19
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 1173
+        width: 189
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b10ccab0c92244e0800000000000000
+      internalID: -1998989376854687304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_20
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 919
+        width: 304
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0435763a2dfa6db80800000000000000
+      internalID: -8370309538202037440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_21
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 919
+        width: 401
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed5c28e99bdfd7f70800000000000000
+      internalID: 9186777788575827422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_22
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 566
+        width: 324
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d0e154bd2299d30800000000000000
+      internalID: 4438617232903114108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_23
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 566
+        width: 323
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a92220296fe33d90800000000000000
+      internalID: -7119083351152907869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_24
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 919
+        width: 205
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515a6d79688f206c0800000000000000
+      internalID: -4178504247289666283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_25
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 870
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 769757fe301521580800000000000000
+      internalID: -8857928439740139161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_26
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 869
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02edf4637702ff9e0800000000000000
+      internalID: -1585512847426724320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_27
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 53
+        width: 1986
+        height: 513
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784dbb184c9f7f0f0800000000000000
+      internalID: -1083122562973838201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_28
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 566
+        width: 304
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e579d0b1c43137b0800000000000000
+      internalID: -5246354084409543195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_29
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 171
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ab5bc3162625f30800000000000000
+      internalID: 4562817542249626258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_30
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 117
+        width: 13
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42ceceb8e7a5746c0800000000000000
+      internalID: -4159256231293424604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_31
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 62
+        width: 21
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f8d7eb574aba110800000000000000
+      internalID: 1273292145276325632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_32
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 40
+        width: 93
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdabb764424b030d0800000000000000
+      internalID: -3445055647044093221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_33
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 43
+        width: 898
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c15f139c2f2b5f370800000000000000
+      internalID: 8355781439483147548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_34
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 1
+        width: 18
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc60c428d1404c00800000000000000
+      internalID: 882777923549949121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_35
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 5
+        width: 123
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fddb5df240dc7220800000000000000
+      internalID: 2485090080538746352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: male_stage2_36
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1
+        width: 86
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859a0748c5777e6c0800000000000000
+      internalID: -4114188495336986280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      male_stage2_0: 2198280637053510067
+      male_stage2_1: 7965942928723078075
+      male_stage2_10: 5015572984456046125
+      male_stage2_11: 1200405222857948188
+      male_stage2_12: 6814602559077555501
+      male_stage2_13: 8851444392086746662
+      male_stage2_14: 6726352612480424390
+      male_stage2_15: 4206870021002361657
+      male_stage2_16: -1020628586474104466
+      male_stage2_17: -1186149238139410319
+      male_stage2_18: 5673514464876686751
+      male_stage2_19: -1998989376854687304
+      male_stage2_2: -593323394059176225
+      male_stage2_20: -8370309538202037440
+      male_stage2_21: 9186777788575827422
+      male_stage2_22: 4438617232903114108
+      male_stage2_23: -7119083351152907869
+      male_stage2_24: -4178504247289666283
+      male_stage2_25: -8857928439740139161
+      male_stage2_26: -1585512847426724320
+      male_stage2_27: -1083122562973838201
+      male_stage2_28: -5246354084409543195
+      male_stage2_29: 4562817542249626258
+      male_stage2_3: -6452729921294160717
+      male_stage2_30: -4159256231293424604
+      male_stage2_31: 1273292145276325632
+      male_stage2_32: -3445055647044093221
+      male_stage2_33: 8355781439483147548
+      male_stage2_34: 882777923549949121
+      male_stage2_35: 2485090080538746352
+      male_stage2_36: -4114188495336986280
+      male_stage2_4: -7977865036089423693
+      male_stage2_5: -6555148676278126282
+      male_stage2_6: 1807300306001125162
+      male_stage2_7: -3146804073652647374
+      male_stage2_8: -3247110324558318345
+      male_stage2_9: -2981035923550275701
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

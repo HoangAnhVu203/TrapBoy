@@ -162,7 +162,6 @@ public class StageController : MonoBehaviour
         if (locked || resultSent) return;
         locked = true;
 
-        // ✅ set route cho stage tiếp theo
         if (ctx != null)
         {
             ctx.route = nextRoute;
@@ -183,9 +182,18 @@ public class StageController : MonoBehaviour
                 }
 
                 var set = GetAnimSet();
-                string anim = isWin ? set.winAnim : set.loseAnim;
+                bool bothWin = mapped0IsWin && mapped1IsWin;
 
-                character.PlayResultNoReturn(anim, isWin, () =>
+                bool animWinFlag = isWin;
+
+                if (bothWin && isWin)
+                {
+                    animWinFlag = (chosenIndex == 0);
+                }
+
+                string anim = animWinFlag ? set.winAnim : set.loseAnim;
+
+                character.PlayResultNoReturn(anim, animWinFlag, () =>
                 {
                     StartCoroutine(ResultDelayCR(isWin));
                 });

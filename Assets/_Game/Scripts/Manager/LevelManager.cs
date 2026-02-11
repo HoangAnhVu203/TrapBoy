@@ -12,6 +12,11 @@ public class LevelManager : Singleton<LevelManager>
     [Header("Start Options")]
     [SerializeField] private int startLevelIndex = 0;
 
+    [Header("Save")]
+    [SerializeField] private bool useSavedLevelOnBoot = true;
+
+    private const string PREF_LEVEL_INDEX = "CURRENT_LEVEL_INDEX";
+
     private int currentLevelIndex;
     private GameObject currentLevelGO;
     private LevelController currentLevel;
@@ -22,10 +27,24 @@ public class LevelManager : Singleton<LevelManager>
 
     void Awake()
     {
-        currentLevelIndex = Mathf.Clamp(startLevelIndex, 0, Mathf.Max(0, levelPrefabs.Count - 1));
+        if (useSavedLevelOnBoot && HasSavedLevel())
+        {
+            currentLevelIndex = GetSavedLevelIndexSafe();
+        }
+        else
+        {
+            currentLevelIndex = ClampLevelIndex(startLevelIndex);
+        }
     }
 
-    /// Load level theo index (spawn prefab level, KHÔNG tự StartLevel)
+    void Start()
+    {
+        // TODO: 
+        // LoadCurrentLevel();
+    }
+
+    // ===================== PUBLIC API =====================
+
     public LevelController LoadLevel(int levelIndex)
     {
         if (levelPrefabs == null || levelPrefabs.Count == 0)
@@ -34,14 +53,14 @@ public class LevelManager : Singleton<LevelManager>
             return null;
         }
 
-        levelIndex = Mathf.Clamp(levelIndex, 0, levelPrefabs.Count - 1);
+        levelIndex = ClampLevelIndex(levelIndex);
 
-        // clear level cũ
         ClearCurrentLevel();
 
         currentLevelIndex = levelIndex;
 
-        // spawn level mới
+        SaveCurrentLevelIndex(currentLevelIndex);
+
         var prefab = levelPrefabs[currentLevelIndex];
         currentLevelGO = Instantiate(prefab, levelRoot != null ? levelRoot : transform);
         currentLevel = currentLevelGO.GetComponentInChildren<LevelController>(true);
@@ -55,13 +74,11 @@ public class LevelManager : Singleton<LevelManager>
         return currentLevel;
     }
 
-    /// Load level hiện tại
     public LevelController LoadCurrentLevel()
     {
         return LoadLevel(currentLevelIndex);
     }
 
-    /// Sang level tiếp theo (wrap về 0 nếu hết)
     public LevelController NextLevel()
     {
         if (levelPrefabs == null || levelPrefabs.Count == 0) return null;
@@ -72,7 +89,6 @@ public class LevelManager : Singleton<LevelManager>
         return LoadLevel(next);
     }
 
-    /// Chơi lại level hiện tại (reload prefab level)
     public LevelController ReplayLevel()
     {
         return LoadLevel(currentLevelIndex);
@@ -95,5 +111,43 @@ public class LevelManager : Singleton<LevelManager>
             if (TotalLevels == 0) return 0;
             return (currentLevelIndex + 1) % TotalLevels;
         }
+    }
+
+    // ===================== SAVE / LOAD =====================
+
+    public void SaveCurrentLevelIndex(int levelIndex)
+    {
+        PlayerPrefs.SetInt(PREF_LEVEL_INDEX, levelIndex);
+        PlayerPrefs.Save();
+    }
+
+    public bool HasSavedLevel()
+    {
+        return PlayerPrefs.HasKey(PREF_LEVEL_INDEX);
+    }
+
+    public int GetSavedLevelIndexSafe()
+    {
+        if (!HasSavedLevel()) return ClampLevelIndex(startLevelIndex);
+
+        int saved = PlayerPrefs.GetInt(PREF_LEVEL_INDEX, startLevelIndex);
+        return ClampLevelIndex(saved);
+    }
+
+    public void ClearSavedLevel()
+    {
+        if (PlayerPrefs.HasKey(PREF_LEVEL_INDEX))
+        {
+            PlayerPrefs.DeleteKey(PREF_LEVEL_INDEX);
+            PlayerPrefs.Save();
+        }
+    }
+
+    // ===================== UTILS =====================
+
+    private int ClampLevelIndex(int idx)
+    {
+        if (levelPrefabs == null || levelPrefabs.Count == 0) return 0;
+        return Mathf.Clamp(idx, 0, levelPrefabs.Count - 1);
     }
 }

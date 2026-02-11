@@ -153,7 +153,6 @@ public class GameManager : Singleton<GameManager>
         PlayStageWithLoading(stageIndex, 1.0f);
     }
 
-
     public void NextLevel()
     {
         if (state != GameFlowState.Win) return;
@@ -163,6 +162,7 @@ public class GameManager : Singleton<GameManager>
 
         StopStageCoroutine();
 
+        MoneyManager.Instance.RewardLevelComplete();
         level = LevelManager.Instance.NextLevel();
         if (level == null)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelFirstLoading : MonoBehaviour
+public class PanelFirstLoading : UICanvas
 {
     [Header("Text")]
     public Text uiText;
