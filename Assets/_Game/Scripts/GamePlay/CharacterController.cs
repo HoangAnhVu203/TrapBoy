@@ -17,6 +17,8 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private int baseTrack = 0;
 
+    public event Action<VFXMoment> OnMoment;
+
     void Awake()
     {
         if (!skeletonAnim) skeletonAnim = GetComponentInChildren<SkeletonGraphic>(true);
@@ -77,6 +79,7 @@ public class CharacterController : MonoBehaviour
 
     public void PlayIntroThenIdle(Action onIntroDone)
     {
+        OnMoment?.Invoke(VFXMoment.IntroStart);
         if (!Ready()) return;
 
         bool hasIntro = HasAnim(introAnim);
@@ -109,13 +112,58 @@ public class CharacterController : MonoBehaviour
     }
 
     // ===================== WIN / LOSE =====================
-
-    public void PlayWinThenIdle(Action onDone)  => PlayResultNoReturn(winAnim, onDone);
-    public void PlayLoseThenIdle(Action onDone) => PlayResultNoReturn(loseAnim, onDone);
-
-    void PlayResultNoReturn(string resultAnim, Action onDone)
+    public void PlayWinThenIdle(Action onDone)
     {
-        if (!Ready()) return;
+        PlayResultNoReturn(winAnim, true, onDone);
+    }
+
+    public void PlayLoseThenIdle(Action onDone)
+    {
+        PlayResultNoReturn(loseAnim, false, onDone);
+    }
+
+    public void PlayIntroThenIdle(string intro, string idle, Action onIntroDone)
+    {
+        if (!Ready()) { onIntroDone?.Invoke(); return; }
+
+        bool hasIntro = HasAnim(intro);
+        bool hasIdle  = HasAnim(idle);
+
+        skeletonAnim.AnimationState.ClearTrack(baseTrack);
+        ResetToSetupPoseNow();
+
+        if (!hasIntro)
+        {
+            if (hasIdle) skeletonAnim.AnimationState.SetAnimation(baseTrack, idle, true);
+            onIntroDone?.Invoke();
+            return;
+        }
+
+        OnMoment?.Invoke(VFXMoment.IntroStart);
+
+        var entry = skeletonAnim.AnimationState.SetAnimation(baseTrack, intro, false);
+
+        bool fired = false;
+        entry.Complete += _ =>
+        {
+            if (fired) return;
+            fired = true;
+
+            OnMoment?.Invoke(VFXMoment.IntroComplete);
+
+            if (hasIdle)
+                skeletonAnim.AnimationState.SetAnimation(baseTrack, idle, true);
+            else
+                skeletonAnim.AnimationState.SetAnimation(baseTrack, intro, true);
+
+            onIntroDone?.Invoke();
+        };
+
+    }
+
+    public void PlayResultNoReturn(string resultAnim, bool isWin, Action onDone)
+    {
+        if (!Ready()) { onDone?.Invoke(); return; }
 
         bool hasResult = HasAnim(resultAnim);
 
@@ -124,10 +172,11 @@ public class CharacterController : MonoBehaviour
 
         if (!hasResult)
         {
-            Debug.LogWarning($"[CharacterController] Missing result anim '{resultAnim}'.");
             onDone?.Invoke();
             return;
         }
+
+        OnMoment?.Invoke(isWin ? VFXMoment.WinStart : VFXMoment.LoseStart);
 
         var entry = skeletonAnim.AnimationState.SetAnimation(baseTrack, resultAnim, false);
 
@@ -136,7 +185,12 @@ public class CharacterController : MonoBehaviour
         {
             if (fired) return;
             fired = true;
+
+            OnMoment?.Invoke(isWin ? VFXMoment.WinComplete : VFXMoment.LoseComplete);
             onDone?.Invoke();
         };
     }
+
+
+
 }

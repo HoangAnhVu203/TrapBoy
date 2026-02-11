@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     private GameFlowState state = GameFlowState.None;
+    private StageContext ctx = new StageContext();
 
     [Header("Runtime")]
     [SerializeField] private int stageIndex;
@@ -69,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         UIManager.Instance.CloseUIDirectly<PanelGamePlay>();
 
         var stage = level.ActivateStage(index);
+        stage.SetContext(ctx);
         if (stage == null) yield break;
 
         var gameplayPanel = UIManager.Instance.GetUI<PanelGamePlay>();

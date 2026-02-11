@@ -5,10 +5,21 @@ using UnityEngine;
 public class StageController : MonoBehaviour
 {
     [Serializable]
+    public class RouteAnimSet
+    {
+        public string introAnim = "intro";
+        public string idleAnim  = "idle";
+        public string winAnim   = "win";
+        public string loseAnim  = "lose";
+    }
+
+    [Serializable]
     public class ChoiceData
     {
         public Sprite optionSprite;
         public bool isWin;
+
+        public BranchRoute nextRoute = BranchRoute.None;
     }
 
     [Header("Stage Choices")]
@@ -25,6 +36,27 @@ public class StageController : MonoBehaviour
     [Header("Intro (fallback nếu không có character)")]
     [SerializeField] private float introSeconds = 1.0f;
 
+    [Header("VFX")]
+    [SerializeField] private StageVFXPlayer vfxPlayer;
+    [SerializeField] private StageVFXConfig vfxConfig;
+    [SerializeField] private RectTransform uiVfxRoot;
+
+    [Header("Branch Route (optional)")]
+    [SerializeField] private bool useBranchRoute = false;
+    [SerializeField] private RouteAnimSet defaultSet = new RouteAnimSet();
+    [SerializeField] private RouteAnimSet route1Set = new RouteAnimSet
+    {
+        introAnim = "intro1", idleAnim = "idle1", winAnim = "win1", loseAnim = "lose1"
+    };
+    [SerializeField] private RouteAnimSet route2Set = new RouteAnimSet
+    {
+        introAnim = "intro2", idleAnim = "idle2", winAnim = "win2", loseAnim = "lose2"
+    };
+
+    private StageContext ctx;
+    public void SetContext(StageContext context) => ctx = context;
+
+
     [Header("Options")]
     [SerializeField] private bool shuffleChoicesEachStage = true;
 
@@ -32,6 +64,8 @@ public class StageController : MonoBehaviour
     private Action<bool> onResult;
     private bool locked;
     private bool mapped0IsWin, mapped1IsWin;
+    private BranchRoute mapped0Route, mapped1Route;
+
     private bool resultSent;
 
     public void BindGameplayUI(PanelGamePlay p) => panel = p;
@@ -53,6 +87,22 @@ public class StageController : MonoBehaviour
             return;
         }
 
+        // ===== VFX =====
+        if (!vfxPlayer) vfxPlayer = GetComponentInChildren<StageVFXPlayer>(true);
+
+        if (!uiVfxRoot) uiVfxRoot = panel.transform as RectTransform;
+
+        if (vfxPlayer != null)
+        {
+            vfxPlayer.ClearAll();
+
+            if (character != null && vfxConfig != null)
+                vfxPlayer.Bind(character, vfxConfig, uiVfxRoot, null);
+            else
+                vfxPlayer.Unbind(); 
+        }
+
+        // ===== UI choices =====
         panel.ResetOptionsUI();
 
         var c0 = choiceA;
@@ -67,31 +117,37 @@ public class StageController : MonoBehaviour
         mapped0IsWin = c0.isWin;
         mapped1IsWin = c1.isWin;
 
+        mapped0Route = c0.nextRoute;
+        mapped1Route = c1.nextRoute;
+
         panel.BindChoiceButtons(
-            onClick1: () => Choose(0, mapped0IsWin),
-            onClick2: () => Choose(1, mapped1IsWin)
+            onClick1: () => Choose(0, mapped0IsWin, mapped0Route),
+            onClick2: () => Choose(1, mapped1IsWin, mapped1Route)
         );
+
 
         // khóa input cho tới khi intro xong
         if (panel.btnOption1) panel.btnOption1.interactable = false;
         if (panel.btnOption2) panel.btnOption2.interactable = false;
     }
 
-    // ✅ ĐỢI SPINE INTRO THẬT SỰ XONG
+    // ĐỢI SPINE INTRO THẬT SỰ XONG
     public IEnumerator PlayIntroCR()
     {
         if (character != null)
         {
+            var set = GetAnimSet();
+
             bool done = false;
-            character.PlayIntroThenIdle(() => done = true);
+            character.PlayIntroThenIdle(set.introAnim, set.idleAnim, () => done = true);
             yield return new WaitUntil(() => done);
             yield break;
         }
 
-        // fallback nếu không có character
         float t = Mathf.Max(0f, introSeconds);
         if (t > 0f) yield return new WaitForSecondsRealtime(t);
     }
+
 
     public void StartGameplayInput()
     {
@@ -100,17 +156,17 @@ public class StageController : MonoBehaviour
         if (panel?.btnOption2) panel.btnOption2.interactable = true;
     }
 
-    // ✅ UI anim xong -> chạy SPINE win/lose -> xong mới trả kết quả
-    private void Choose(int chosenIndex, bool isWin)
+    //  UI anim xong -> chạy SPINE win/lose -> xong mới trả kết quả
+    private void Choose(int chosenIndex, bool isWin, BranchRoute nextRoute)
     {
         if (locked || resultSent) return;
         locked = true;
 
-        if (panel == null)
+        // ✅ set route cho stage tiếp theo
+        if (ctx != null)
         {
-            Debug.LogError("[StageController] Choose: panel is null.");
-            locked = false;
-            return;
+            ctx.route = nextRoute;
+            ctx.lastChosenIndex = chosenIndex;
         }
 
         panel.PlayChoiceResultBG(
@@ -120,17 +176,20 @@ public class StageController : MonoBehaviour
             failBgSprite: failButtonBg,
             onDone: () =>
             {
-                // sau UI anim, chạy spine result
                 if (character == null)
                 {
-                    SendResult(isWin);
+                    StartCoroutine(ResultDelayCR(isWin));
                     return;
                 }
 
-                if (isWin)
-                    character.PlayWinThenIdle(() => SendResult(true));
-                else
-                    character.PlayLoseThenIdle(() => SendResult(false));
+                var set = GetAnimSet();
+                string anim = isWin ? set.winAnim : set.loseAnim;
+
+                character.PlayResultNoReturn(anim, isWin, () =>
+                {
+                    StartCoroutine(ResultDelayCR(isWin));
+                });
+
             }
         );
     }
@@ -141,4 +200,25 @@ public class StageController : MonoBehaviour
         resultSent = true;
         onResult?.Invoke(isWin);
     }
+
+    private IEnumerator ResultDelayCR(bool isWin)
+    {
+        yield return new WaitForSecondsRealtime(1.25f);
+        SendResult(isWin);
+    }
+
+    RouteAnimSet GetAnimSet()
+    {
+        if (!useBranchRoute) return defaultSet;
+
+        var r = ctx != null ? ctx.route : BranchRoute.None;
+
+        return r switch
+        {
+            BranchRoute.Route1 => route1Set,
+            BranchRoute.Route2 => route2Set,
+            _ => defaultSet
+        };
+    }
+
 }
